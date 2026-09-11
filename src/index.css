@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body { @apply bg-[#f6f8f7] text-ink-900 font-sans antialiased; }
+.dark body { @apply bg-[#0b1210] text-slate-100; }
+* { -webkit-tap-highlight-color: transparent; }
+
+@layer components {
+  .card { @apply bg-white rounded-2xl border border-ink-200/70 shadow-card; }
+  .dark .card { @apply bg-[#111a17] border-white/10 shadow-none; }
+  .card-pad { @apply p-4 sm:p-5; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-brand-700 text-white hover:bg-brand-800 shadow-pop; }
+  .btn-secondary { @apply btn bg-white border border-ink-200 text-ink-900 hover:bg-ink-50; }
+  .dark .btn-secondary { @apply bg-white/5 border-white/10 text-slate-100 hover:bg-white/10; }
+  .btn-ghost { @apply btn text-ink-700 hover:bg-ink-100; }
+  .dark .btn-ghost { @apply text-slate-300 hover:bg-white/10; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+  .input { @apply w-full rounded-xl border border-ink-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-100 placeholder:text-ink-400; }
+  .dark .input { @apply bg-white/5 border-white/10 text-slate-100 placeholder:text-slate-500 focus:border-brand-500 focus:ring-brand-900; }
+  .label { @apply block text-xs font-semibold uppercase tracking-wide text-ink-500 mb-1.5; }
+  .dark .label { @apply text-slate-400; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide; }
+  .th { @apply text-left text-[11px] font-bold uppercase tracking-wider text-ink-500 px-3 py-2.5 whitespace-nowrap; }
+  .dark .th { @apply text-slate-400; }
+  .td { @apply px-3 py-3 text-sm align-middle; }
+  .navlink { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-700 hover:bg-brand-50 hover:text-brand-800 transition; }
+  .dark .navlink { @apply text-slate-300 hover:bg-white/5 hover:text-white; }
+  .navlink-active { @apply bg-brand-700 text-white hover:bg-brand-700 hover:text-white shadow-pop; }
+  .dark .navlink-active { @apply bg-brand-600; }
+  .kpi-label { @apply text-xs font-semibold uppercase tracking-wide text-ink-500; }
+  .dark .kpi-label { @apply text-slate-400; }
+  .section-title { @apply font-display text-base sm:text-lg font-bold text-ink-900; }
+  .dark .section-title { @apply text-white; }
+  .muted { @apply text-ink-500; }
+  .dark .muted { @apply text-slate-400; }
+  .surface-top { @apply bg-white/90 border-ink-200/70; }
+  .dark .surface-top { @apply bg-[#0e1513]/90 border-white/10; }
+}
+
+.font-display { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; }
+
+/* subtle scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #cbd5d1; border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* CRM Glass Morphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.dark .glass-card {
+  background: rgba(14, 21, 19, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-pill {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.dark .glass-pill {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* CRM Shiny Emerald Button */
+.btn-shiny-emerald {
+  background: linear-gradient(135deg, #059669 0%, #047857 40%, #064e3b 100%);
+  box-shadow: 0 2px 8px -1px rgba(5, 150, 105, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+.btn-shiny-emerald:hover {
+  background: linear-gradient(135deg, #10b981 0%, #059669 40%, #047857 100%);
+  box-shadow: 0 4px 12px -2px rgba(5, 150, 105, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+.btn-shiny-emerald:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px -1px rgba(5, 150, 105, 0.4);
+}
+
+/* CRM Shiny Badge */
+.badge-shiny-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+}
+
+/* CRM Selected Opp Item */
+.opp-selected {
+  background: rgba(236, 253, 245, 0.7);
+  border: 2px solid rgba(16, 185, 129, 0.6);
+}
+.dark .opp-selected {
+  background: rgba(5, 150, 105, 0.12);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* CRM Unselected Opp Item */
+.opp-item {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.15s ease;
+}
+.opp-item:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.dark .opp-item {
+  background: rgba(14, 21, 19, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.dark .opp-item:hover {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* CRM Hero Cover Gradient */
+.crm-hero-fade {
+  background: linear-gradient(to right, white, rgba(255,255,255,0.6), transparent);
+}
+.dark .crm-hero-fade {
+  background: linear-gradient(to right, #0e1513, rgba(14,21,19,0.6), transparent);
+}
+
+/* Scrollbar hide utility */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* animations */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.anim-fadeUp { animation: fadeUp .35s ease both; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 1023px) {
+  .pb-safe { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
+}
