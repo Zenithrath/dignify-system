@@ -8,7 +8,21 @@ const CRM_CTX = createContext(null)
 export const useCrm = () => useContext(CRM_CTX)
 
 function loadCRM() {
-  try { const r = localStorage.getItem(CRM_KEY); if (r) return JSON.parse(r) } catch {}
+  try {
+    const r = localStorage.getItem(CRM_KEY)
+    if (r) {
+      const parsed = JSON.parse(r)
+      // Migrate old data that doesn't have prospects/clients/activities
+      if (!parsed.prospects || !parsed.clients || !parsed.activities) {
+        const fresh = seedCRM()
+        parsed.prospects = parsed.prospects || fresh.prospects
+        parsed.clients = parsed.clients || fresh.clients
+        parsed.activities = parsed.activities || fresh.activities
+        localStorage.setItem(CRM_KEY, JSON.stringify(parsed))
+      }
+      return parsed
+    }
+  } catch {}
   const s = seedCRM()
   localStorage.setItem(CRM_KEY, JSON.stringify(s))
   return s

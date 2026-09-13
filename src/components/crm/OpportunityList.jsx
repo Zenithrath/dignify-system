@@ -3,6 +3,7 @@ import { useCrm } from '../../lib/crmStore'
 import { CRM_STAGES, stageInfo } from '../../data/crmDummy'
 import { IDR, fmtDate } from '../../lib/format'
 import * as Icons from 'lucide-react'
+import FilterTabs from './FilterTabs'
 import { ActionModal } from '../workflow'
 import { Field } from '../ui'
 
@@ -142,20 +143,13 @@ export default function OpportunityList() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center gap-1 my-2.5 overflow-x-auto pb-1 scrollbar-none">
-          {FILTER_TABS.slice(0, 4).map((f) => (
-            <button key={f.key} onClick={() => setFilter(f.key)} className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-medium flex items-center gap-1 transition ${
-              filter === f.key
-                ? 'btn-shiny-emerald text-white'
-                : 'text-gray-600 border border-gray-200/80 bg-white/50 hover:bg-white dark:bg-white/5 dark:border-white/10 dark:text-slate-400 dark:hover:bg-white/10'
-            }`}>
-              {f.label}
-              <span className={filter === f.key ? 'bg-white/20 text-white' : 'text-gray-400 dark:text-slate-500'}>
-                {f.key === 'ALL' ? counts.total : (counts.byStage[f.key] || 0)}
-              </span>
-            </button>
-          ))}
-        </div>
+        <FilterTabs
+          tabs={FILTER_TABS.slice(0, 4)}
+          active={filter}
+          onChange={setFilter}
+          counts={{ ALL: counts.total, ...counts.byStage }}
+          showSettings
+        />
 
         {/* Search & Sort */}
         <div className="flex gap-2">
@@ -182,9 +176,12 @@ export default function OpportunityList() {
       {/* Cards List */}
       <div className="flex-1 overflow-y-auto p-2.5 space-y-2.5">
         {filtered.length === 0 && (
-          <div className="text-center py-8 text-xs text-gray-400 dark:text-slate-500">
-            <Icons.Inbox size={32} className="mx-auto mb-2 opacity-40" />
-            No opportunities found
+          <div className="text-center py-12">
+            <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-emerald-100 to-amber-50 dark:from-emerald-900/30 dark:to-amber-900/20 text-emerald-500 dark:text-emerald-400 flex items-center justify-center mb-3">
+              <Icons.Inbox size={24} />
+            </div>
+            <p className="text-xs font-bold text-gray-900 dark:text-white">No opportunities found</p>
+            <p className="text-[11px] text-gray-400 dark:text-slate-500 mt-1">Try adjusting your filters or search</p>
           </div>
         )}
         {filtered.map((opp) => (

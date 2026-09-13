@@ -672,13 +672,13 @@ export default function OpportunityDetail({ users }) {
   const { selected: opp, selectedTab, setSelectedTab } = useCrm()
 
   if (!opp) return (
-    <div className="h-full flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-16 h-16 mx-auto rounded-3xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-3">
-          <Icons.MousePointerClick size={28} />
+    <div className="h-full flex items-center justify-center p-8">
+      <div className="text-center max-w-xs">
+        <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-emerald-100 to-amber-50 dark:from-emerald-900/30 dark:to-amber-900/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/10">
+          <Icons.MousePointerClick size={32} />
         </div>
-        <p className="font-bold text-gray-900 dark:text-white">Select an opportunity</p>
-        <p className="text-sm text-gray-400 dark:text-slate-500 mt-1">Choose from the list to see details</p>
+        <p className="font-bold text-gray-900 dark:text-white text-sm">Select an opportunity</p>
+        <p className="text-xs text-gray-400 dark:text-slate-500 mt-1.5 leading-relaxed">Choose from the list to see details and manage your pipeline</p>
       </div>
     </div>
   )

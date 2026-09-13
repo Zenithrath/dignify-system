@@ -58,7 +58,7 @@ body { @apply bg-[#f6f8f7] text-ink-900 font-sans antialiased; }
 }
 .dark .glass-card {
   background: rgba(14, 21, 19, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 .glass-pill {
   background: rgba(255, 255, 255, 0.6);
@@ -71,35 +71,168 @@ body { @apply bg-[#f6f8f7] text-ink-900 font-sans antialiased; }
 
 /* CRM Shiny Emerald Button */
 .btn-shiny-emerald {
-  background: linear-gradient(135deg, #059669 0%, #047857 40%, #064e3b 100%);
-  box-shadow: 0 2px 8px -1px rgba(5, 150, 105, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  transition: all 0.2s ease-in-out;
+  background: radial-gradient(circle at 20% 20%, #165b38 0%, #0a331f 40%, #051d11 80%);
+  box-shadow: inset 1px 1.5px 2px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.35);
+  border: 1px solid rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-shiny-emerald::before {
+  content: '';
+  position: absolute;
+  top: 2px; left: 6px;
+  width: 40%; height: 45%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.28) 0%, transparent 75%);
+  pointer-events: none;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+.btn-shiny-emerald::after {
+  content: '';
+  position: absolute;
+  inset: 0; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(34,197,94,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 .btn-shiny-emerald:hover {
-  background: linear-gradient(135deg, #10b981 0%, #059669 40%, #047857 100%);
-  box-shadow: 0 4px 12px -2px rgba(5, 150, 105, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
-  transform: translateY(-1px);
+  background: radial-gradient(circle at 20% 20%, #1c7347 0%, #0c3e26 40%, #062415 80%);
+  box-shadow: inset 1.5px 2px 3px rgba(255,255,255,0.6), inset -2px -2px 4px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.4);
+  border-color: rgba(34,197,94,0.35);
 }
+.btn-shiny-emerald:hover::before { width: 55%; height: 55%; left: 4px; background: radial-gradient(ellipse at center, rgba(255,255,255,0.45) 0%, transparent 80%); }
+.btn-shiny-emerald:hover::after { opacity: 1; }
 .btn-shiny-emerald:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px -1px rgba(5, 150, 105, 0.4);
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8), inset -1px -1px 2px rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5);
+  transition: all 0.08s ease-out;
 }
+.btn-shiny-emerald:active::before { opacity: 0.3; }
 
 /* CRM Shiny Badge */
 .badge-shiny-emerald {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+  background: radial-gradient(circle at 30% 25%, #165b38 0%, #0a331f 60%, #051d11 100%);
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.35), inset -1px -1px 3px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,0,0,0.4);
 }
 
 /* CRM Selected Opp Item */
 .opp-selected {
   background: rgba(236, 253, 245, 0.7);
-  border: 2px solid rgba(16, 185, 129, 0.6);
+  border: 2px solid rgba(16, 185, 129, 0.5);
 }
 .dark .opp-selected {
-  background: rgba(5, 150, 105, 0.12);
-  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(5, 150, 105, 0.1);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* CRM Filter Tabs - 3D Emerald Gemstone */
+.filter-tab {
+  @apply shrink-0 h-8 rounded-full text-[11px] font-semibold flex items-center cursor-pointer select-none;
+  color: #6b7280;
+  position: relative;
+  overflow: hidden;
+  padding-left: 12px;
+  padding-right: 4px;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: color 0.2s ease;
+}
+.filter-tab:hover { color: #374151; }
+.dark .filter-tab:hover { color: #e2e8f0; }
+
+.filter-tab-active {
+  background: radial-gradient(circle at 18% 18%, #165b38 0%, #0a331f 35%, #051d11 70%, #020d07 100%);
+  color: #ffffff;
+  box-shadow: inset 1px 1.5px 2px rgba(255,255,255,0.45), inset -2px -2px 4px rgba(0,0,0,0.9), 0 3px 8px rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.7);
+  padding-left: 14px;
+  padding-right: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.filter-tab-active::before {
+  content: '';
+  position: absolute;
+  top: 2px; left: 6px;
+  width: 40%; height: 45%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.28) 0%, transparent 75%);
+  pointer-events: none;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+.filter-tab-active::after {
+  content: '';
+  position: absolute;
+  inset: 0; border-radius: 999px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.filter-tab-active:hover {
+  background: radial-gradient(circle at 18% 18%, #1c7347 0%, #0c3e26 35%, #062415 70%, #020d07 100%);
+  box-shadow: inset 1.5px 2px 3px rgba(255,255,255,0.65), inset -2px -2px 4px rgba(0,0,0,0.85), 0 3px 6px rgba(0,0,0,0.45);
+  border-color: rgba(34,197,94,0.4);
+}
+.filter-tab-active:hover::before { width: 55%; height: 55%; left: 4px; background: radial-gradient(ellipse at center, rgba(255,255,255,0.5) 0%, transparent 80%); }
+.filter-tab-active:hover::after { opacity: 1; }
+.filter-tab-active:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8), inset -1px -1px 2px rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5);
+  transition: all 0.08s ease-out;
+}
+.filter-tab-active:active::before { opacity: 0.3; }
+
+.dark .filter-tab-active {
+  background: radial-gradient(circle at 18% 18%, #1c7347 0%, #0c3e26 35%, #062415 70%, #020d07 100%);
+  box-shadow: inset 1px 1.5px 2px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.5);
+  border-color: rgba(0,0,0,0.6);
+}
+.dark .filter-tab-active:hover {
+  background: radial-gradient(circle at 18% 18%, #22a85e 0%, #0f4a2d 35%, #072b18 70%, #020d07 100%);
+  box-shadow: inset 1.5px 2px 3px rgba(255,255,255,0.55), inset -2px -2px 4px rgba(0,0,0,0.8), 0 3px 6px rgba(0,0,0,0.5);
+}
+
+.filter-tab-count {
+  @apply text-[10px] font-black rounded-full h-5 min-w-[20px] flex items-center justify-center;
+  background: radial-gradient(circle at 30% 25%, #ffffff 0%, #edf0e6 60%, #c8cebe 100%);
+  box-shadow: inset 1px 1px 1.5px rgba(255,255,255,1), inset -1px -1px 2px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.5);
+  color: #0f1d15;
+  border: 1px solid rgba(0,0,0,0.25);
+  padding: 0 6px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.filter-tab-active:hover .filter-tab-count {
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,1), inset -1px -1px 2px rgba(0,0,0,0.3), 0 0 8px rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.6);
+  transform: scale(1.03);
+}
+.dark .filter-tab-count {
+  background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.9) 0%, rgba(237,240,230,0.85) 60%, rgba(200,206,190,0.8) 100%);
+  box-shadow: inset 1px 1px 1.5px rgba(255,255,255,0.8), inset -1px -1px 2px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5);
+  color: #0f1d15;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* CRM Sidebar Nav Item */
+.nav-crm {
+  transition: all 0.15s ease;
+}
+.nav-crm:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.dark .nav-crm:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.nav-crm-active {
+  background: radial-gradient(circle at 15% 30%, rgba(22,91,56,0.12) 0%, rgba(10,51,31,0.08) 50%, rgba(5,29,17,0.04) 100%);
+  border: 1px solid rgba(16,185,129,0.15);
+}
+.dark .nav-crm-active {
+  background: radial-gradient(circle at 15% 30%, rgba(22,91,56,0.18) 0%, rgba(10,51,31,0.12) 50%, rgba(5,29,17,0.06) 100%);
+  border-color: rgba(16,185,129,0.2);
 }
 
 /* CRM Unselected Opp Item */
@@ -108,17 +241,19 @@ body { @apply bg-[#f6f8f7] text-ink-900 font-sans antialiased; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.6);
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 .opp-item:hover {
-  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(249, 250, 251, 0.9);
+  border-color: rgba(16, 185, 129, 0.2);
 }
 .dark .opp-item {
-  background: rgba(14, 21, 19, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(14, 21, 19, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 .dark .opp-item:hover {
-  border-color: rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.15);
 }
 
 /* CRM Hero Cover Gradient */
